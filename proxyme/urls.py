@@ -18,10 +18,11 @@ from django.contrib import admin
 from django.urls import path, re_path
 from revproxy.views import ProxyView
 
-from proxyme.views import TestProxyView
+from proxyme.views import TestProxyView, redirect_handler
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('<path>/', ProxyView.as_view(upstream='https://deloitte.ru/')),
-    path('<path>/w', TestProxyView.as_view())
+    # path('<path>/', ProxyView.as_view(upstream='https://deloitte.ru/')),
+    path('proxy/<path>', TestProxyView.as_view()),
+    path('redirect/', redirect_handler)
 ]
